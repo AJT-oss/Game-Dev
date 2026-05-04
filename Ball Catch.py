@@ -12,6 +12,7 @@ basket.pos=200,550
 
 score=0
 lives=3
+gameover=False
 
 def draw() :
     screen.blit("bg.png",(0,0))
@@ -19,32 +20,39 @@ def draw() :
     basket.draw()
     screen.draw.text(f"Score:{score}",(25,15))
     screen.draw.text(f"Lives:{lives}",(250,15))
+    if gameover:
+        screen.draw.text("GAMEOVER",(150,300),fontsize=50,color="Red")
 
 fallingspeed = 7
 
 
 def update():
-    global score,c
+    global score,c, gameover
     global lives
     if keyboard.left:
         basket.x-=5
     if keyboard.right:
         basket.x+=5
     
+    if gameover:
+        return
+
     ball.y+=fallingspeed
     if ball.y>HEIGHT:
         lives-=1
         resetball()
+    if lives<=0:
+        gameover=True
 
 
     
 
     if basket.colliderect(ball):
         score+=1
-        resetball()
+        resetball()        
 
-    if lives<1:
-        screen.draw.text("Game Over",(300,200))
+    
+        
 
 
 def resetball():
