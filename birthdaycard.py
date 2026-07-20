@@ -1,6 +1,7 @@
 import pygame
 import time
 pygame.init()
+pygame.mixer.init()
 
 WIDTH=600
 HEIGHT=600
@@ -11,6 +12,9 @@ pygame.display.set_caption("Birthday Greeting")
 
 img=pygame.image.load("image")
 image=pygame.transform.scale(img,(WIDTH,HEIGHT))
+
+music = pygame.mixer.Sound("Images/song.mp3")
+
 while True:
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
@@ -20,6 +24,7 @@ while True:
     displaysurface.fill((255,255,255))
     displaysurface.blit("card1.jpg"(0,0))
     displaysurface.blit("Wishing you a Happy B-DAY",(175,300))
+    music.play()
     pygame.display.update()
     time.sleep(2)
 
@@ -30,6 +35,7 @@ while True:
     displaysurface.fill((255,255,255))
     displaysurface.blit("card2.jpg"(0,0))
     displaysurface.blit("Hope you remain a bright and kind person along the years",(175,300))
+    music.play()
     pygame.display.update()
     time.sleep(2)
 
